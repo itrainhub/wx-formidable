@@ -1,0 +1,33 @@
+{
+  "name": "wx-formidable",
+  "version": "1.0.0",
+  "description": "一个微信小程序的模块，用于向后端发送 form-data 格式的数据，特别是文件上传，支持多文件上传功能。",
+  "main": "./dist/wx-formidable.min.js",
+  "scripts": {
+    "publish": "gulp && npm publish"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/itrainhub/wx-formidable.git"
+  },
+  "keywords": [
+    "miniprogram",
+    "form data",
+    "fileupload"
+  ],
+  "author": "isaac",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/itrainhub/wx-formidable/issues"
+  },
+  "homepage": "https://github.com/itrainhub/wx-formidable#readme",
+  "devDependencies": {
+    "@babel/core": "^7.13.15",
+    "@babel/preset-env": "^7.13.15",
+    "del": "^6.0.0",
+    "gulp": "^4.0.2",
+    "gulp-babel": "^8.0.0",
+    "gulp-rename": "^2.0.0",
+    "gulp-uglify": "^3.0.2"
+  }
+}
