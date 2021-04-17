@@ -23,6 +23,7 @@
   "homepage": "https://github.com/itrainhub/wx-formidable#readme",
   "devDependencies": {
     "@babel/core": "^7.13.15",
+    "@babel/plugin-proposal-optional-chaining": "^7.13.12",
     "@babel/preset-env": "^7.13.15",
     "del": "^6.0.0",
     "gulp": "^4.0.2",

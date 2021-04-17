@@ -7,7 +7,7 @@ var del = require('del')
 var paths = {
   scripts: {
     src: 'lib/index.js',
-    dest: 'dist/'
+    dest: 'dist/',
   }
 }
 
@@ -15,7 +15,11 @@ const clean = () => del([ 'dist' ])
 
 function scripts() {
   return gulp.src(paths.scripts.src, { sourcemaps: false })
-    .pipe(babel())
+    .pipe(babel({
+      plugins: [
+        '@babel/plugin-proposal-optional-chaining',
+      ]
+    }))
     .pipe(uglify())
     .pipe(rename(function(path) {
       path.basename = "wx-formidable.min"
