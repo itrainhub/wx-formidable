@@ -3,3 +3,4 @@ miniprogram_npm
 .DS_Store
 npm-debug.log*
 .vscode
+example/public/images
