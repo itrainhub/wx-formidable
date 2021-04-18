@@ -39,6 +39,15 @@ wx.chooseMessageFile({
   count: 9,
   type: 'all',
   success: res => {
+    // 文本字段
+    const fields = [{
+      name: 'username',
+      value: 'xiaoming'
+    }, {
+      name: 'nickname',
+      value: 'isaac'
+    }]
+    // 文件
     const files = []
     res.tempFiles.forEach((file, index) => {
       files.push({
@@ -47,8 +56,8 @@ wx.chooseMessageFile({
         filename: file.name,
       })
     })
-    // 调用 wxFormidable() 上传文件
-    wxFormidable({url: 'http://localhost:3000/api/upload', files})
+    // 调用 wxFormidable() 上传文本与文件
+    wxFormidable({url: 'http://localhost:3000/api/upload', fields, files})
     	.then(data => console.log('上传成功：', data))
       .catch(err => console.log('上传失败：', err))
   }
@@ -70,12 +79,15 @@ const promise = wxFormidable(options)
 
 ### Options
 
-- `url` **{string}** - 文件上传的地址
+- `url` **{string}** - 后端接口地址
 - `method` **{string}** - 请求方法，默认为 `POST`
 - `header` **{object}** - 请求头信息
+- `fields` **{object[]}** - 文本字段列表，数组中对象结构：
+  - `name` **{string}** - 字段名称，发送给后端的参数名
+  - `value` **{string}** - 文本值
 - `files` **{object[]}** - 上传的文件列表，每个上传文件的信息包括：
-  - `name` **{string}** - 字段名称，发给后端的参数名
+  - `name` **{string}** - 字段名称，发送给后端的参数名
   - `filePath` **{string}** - 本地文件路径
-  - `filename` **{string}** - 本地文件名称
+  - `fileName` **{string}** - 本地文件名称
 - `success` **{function}** - 成功的回调函数：function(data)
 - `fail` **{function}** - 失败的回调函数：function(error)

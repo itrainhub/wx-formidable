@@ -12,11 +12,19 @@ Page({
           files.push({
             name: 'myfile',
             filePath: file.path,
-            filename: file.name,
+            fileName: file.name,
           })
         })
-        // 调用 wxFormidable() 上传文件
-        wxFormidable({url: 'http://localhost:3000/api/upload', files})
+        const fields = []
+        fields.push({
+          name: 'username',
+          value: 'xiaoming'
+        }, {
+          name: 'nickname',
+          value: 'isaac'
+        })
+        // 调用 wxFormidable() 上传文本及文件
+        wxFormidable({url: 'http://localhost:3000/api/upload', files, fields})
           .then(data => console.log('上传成功：', data))
           .catch(err => console.log('上传失败：', err))
       }
