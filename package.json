@@ -1,6 +1,6 @@
 {
   "name": "wx-formidable",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "一个微信小程序的模块，用于向后端发送 form-data 格式的数据，特别是文件上传，支持多文件上传功能。",
   "main": "./dist/wx-formidable.min.js",
   "scripts": {},
