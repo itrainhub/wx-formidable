@@ -1,4 +1,4 @@
-const wxFormidable = require('wx-formidable')
+const {wxFormidable} = require('wx-formidable')
 
 Page({
   // 上传文件
@@ -22,6 +22,9 @@ Page({
         }, {
           name: 'nickname',
           value: 'isaac'
+        }, {
+          name: 'address',
+          value: '陕西 西安'
         })
         // 调用 wxFormidable() 上传文本及文件
         wxFormidable({url: 'http://localhost:3000/api/upload', files, fields})
