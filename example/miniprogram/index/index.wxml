@@ -1,3 +1,25 @@
 <view class="intro">
-  <button bindtap="upload">上传文件</button>
+  <form bindsubmit="submit">
+    <view>
+      姓名：<input placeholder="请输入姓名" name="name" style="display: inline-block;" />
+    </view>
+    <view>
+      身份证号：<input placeholder="请输入身份证号" name="idcard" style="display: inline-block;" />
+    </view>
+    <view>
+      地址：
+      <picker mode="region" name="address" style="display: inline-block;" bindchange="bindRegionChange" value="{{region}}">{{region[0]}}，{{region[1]}}，{{region[2]}}</picker>
+    </view>
+    <view>
+      身份证正面照：
+      <image src="{{front.filePath}}" style="width: 64px; height: 64px; border: 1px solid #eaeaea;" data-side="front" bindtap="chooseImage" name="front"></image>
+    </view>
+    <view>
+      身份证反面照：
+      <image src="{{back.filePath}}" style="width: 64px; height: 64px; border: 1px solid #eaeaea;" data-side="back" bindtap="chooseImage" name="end"></image>
+    </view>
+    <view>
+      <button form-type="submit">注册</button>
+    </view>
+  </form>
 </view>

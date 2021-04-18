@@ -1,36 +1,72 @@
-const {wxFormidable} = require('wx-formidable')
+const wxFormidable = require('wx-formidable')
 
 Page({
-  // 上传文件
-  upload() {
+  data: {
+    region: ['陕西省', '西安市', '未央区'],
+    customItem: '全部',
+    front: {
+      filePath: '../images/add.png',
+      fileName: 'add.png',
+      name: 'front',
+    },
+    back: {
+      filePath: '../images/add.png',
+      fileName: 'add.png',
+      name: 'back',
+    }
+  },
+  // 选择地址
+  bindRegionChange(e) {
+    this.setData({
+      region: e.detail.value
+    })
+  },
+  // 选择图片
+  chooseImage(e) {
+    const side = e.target.dataset.side
     wx.chooseMessageFile({
-      count: 9,
-      type: 'all',
+      count: 1,
       success: res => {
-        const files = []
-        res.tempFiles.forEach(file => {
-          files.push({
-            name: 'myfile',
-            filePath: file.path,
-            fileName: file.name,
-          })
+        this.setData({
+          [side]: {
+            filePath: res.tempFiles[0].path,
+            fileName: res.tempFiles[0].name,
+            name: side
+          }
         })
-        const fields = []
-        fields.push({
-          name: 'username',
-          value: 'xiaoming'
-        }, {
-          name: 'nickname',
-          value: 'isaac'
-        }, {
-          name: 'address',
-          value: '陕西 西安'
-        })
-        // 调用 wxFormidable() 上传文本及文件
-        wxFormidable({url: 'http://localhost:3000/api/upload', files, fields})
-          .then(data => console.log('上传成功：', data))
-          .catch(err => console.log('上传失败：', err))
       }
     })
+  },
+  // 提交表单数据
+  submit(e) {
+    const {front, back} = this.data
+    const {name, address, idcard} = e.detail.value
+    const files = [ front, back ]
+    const fields = [
+      {
+        name: 'name',
+        value: name
+      }, {
+        name: 'address',
+        value: address.join()
+      }, {
+        name: 'idcard',
+        value: idcard
+      }
+    ]
+    // 调用 wxFormidable() 上传文本及文件
+    wxFormidable({url: 'http://localhost:3000/api/upload', files, fields})
+      .then(data => {
+        console.log('提交成功：', data)
+        wx.showToast({
+          title: '提交成功',
+        })
+      })
+      .catch(err => {
+        console.log('提交失败：', err)
+        wx.showToast({
+          title: '提交失败',
+        })
+      })
   },
 })
